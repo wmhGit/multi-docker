@@ -14,6 +14,7 @@ after_success:
   - docker build -t wmhgit/multi-server ./server
   - docker build -t wmhgit/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+# push to docker hub
   - docker push wmhgit/multi-client
   - docker push wmhgit/multi-nginx
   - docker push wmhgit/multi-server
