@@ -9,13 +9,13 @@ script:
   - docker run wmhgit/react-test npm test -- --coverage
 
 after_success:
-  - docker build -t wmhgit/multi-client ./client
-  - docker build -t wmhgit/multi-nginx ./nginx
-  - docker build -t wmhgit/multi-server ./server
-  - docker build -t wmhgit/multi-worker ./worker
+  - docker build -t wmh17dc/multi-client ./client
+  - docker build -t wmh17dc/multi-nginx ./nginx
+  - docker build -t wmh17dc/multi-server ./server
+  - docker build -t wmh17dc/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # push to docker hub
-  - docker push wmhgit/multi-client
-  - docker push wmhgit/multi-nginx
-  - docker push wmhgit/multi-server
-  - docker push wmhgit/multi-worker
+  - docker push wmh17dc/multi-client
+  - docker push wmh17dc/multi-nginx
+  - docker push wmh17dc/multi-server
+  - docker push wmh17dc/multi-worker
