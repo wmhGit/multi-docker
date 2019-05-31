@@ -1,0 +1,20 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t wmhgit/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run wmhgit/react-test npm test -- --coverage
+
+after_success:
+  - docker build -t wmhgit/multi-client ./client
+  - docker build -t wmhgit/multi-nginx ./nginx
+  - docker build -t wmhgit/multi-server ./server
+  - docker build -t wmhgit/multi-worker ./worker
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push wmhgit/multi-client
+  - docker push wmhgit/multi-nginx
+  - docker push wmhgit/multi-server
+  - docker push wmhgit/multi-worker
