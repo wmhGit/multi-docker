@@ -15,6 +15,7 @@ after_success:
   - docker build -t wmh17dc/multi-worker ./worker
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 # push to docker hub
+#
   - docker push wmh17dc/multi-client
   - docker push wmh17dc/multi-nginx
   - docker push wmh17dc/multi-server
